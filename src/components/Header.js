@@ -21,19 +21,41 @@ const Header = () => {
     });
   }
 
-  useEffect(() => {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          const { uid, email, displayName, photoURL } = user;
-          dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
-          navigate("/browse");
-        } else {
-          dispatch(removeUser());
-          navigate("/");
-        }
-      });
-    },[]);
+  // useEffect(() => {
+  //     onAuthStateChanged(auth, (user) => {
+  //       if (user) {
+  //         const { uid, email, displayName, photoURL } = user;
+  //         dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
+  //         navigate("/browse");
+  //       } else {
+  //         dispatch(removeUser());
+  //         navigate("/");
+  //       }
+  //     });
+  //   },[]);
     
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+
+    // Unsubscribe when component unmounts
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className='fixed top-0 left-0 w-screen px-8 py-2 bg-gradient-to-b from-black flex justify-between'>
