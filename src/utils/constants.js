@@ -8,7 +8,11 @@ export const API_NOW_PLAYING = "https://api.themoviedb.org/3/movie/now_playing?&
 
 export const API_MOVIE_TRAILER_VIDEO = "https://api.themoviedb.org/3/movie/";
 
+export const API_MOVIE_POPULAR = "https://api.themoviedb.org/3/movie/popular?page=1";
+
 export const YOUTUBE_SOURCE_LINK = "https://www.youtube.com/embed/";
+
+export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
 
 export const API_OPTIONS = {
   method: 'GET',

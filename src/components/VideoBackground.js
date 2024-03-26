@@ -7,6 +7,7 @@ const VideoBackground = ({ movieId }) => {
 
   useMovieTrailer(movieId);
 
+
   return (
     <div className=" w-screen">
       <iframe
@@ -19,6 +20,7 @@ const VideoBackground = ({ movieId }) => {
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       ></iframe>
+      
     </div>
   );
 };
